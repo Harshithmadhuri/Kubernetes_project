@@ -1,6 +1,7 @@
 pipeline {
     agent any
     environment {
+	SHELL = "/bin/bash"
         REGISTRY = 'docker.io'
         DOCKER_USER = 'harshithmadhuri'
         IMAGE_NAME = 'demo-app'

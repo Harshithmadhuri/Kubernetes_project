@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: demo-app
-          image: DOCKERHUB_USERNAME/demo-app:latest
+          image: harshithmadhuri/demo-app:latest
           ports:
             - containerPort: 80
           resources:

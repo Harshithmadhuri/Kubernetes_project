@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         REGISTRY = 'docker.io'
-        DOCKER_USER = 'DOCKERHUB_USERNAME'
+        DOCKER_USER = 'harshithmadhuri'
         IMAGE_NAME = 'demo-app'
         K8S_NAMESPACE = 'demo'
     }
@@ -23,7 +23,7 @@ pipeline {
         }
         stage('Push to registry') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DH_USER', passwordVariable: 'DH_PASS')]) {
+                withCredentials([usernamePassword(credentialsId: 'agent_dockerhub', usernameVariable: 'DH_USER', passwordVariable: 'DH_PASS')]) {
                     sh '''
                       set -euxo pipefail
                       echo "$DH_PASS" | docker login -u "$DH_USER" --password-stdin $REGISTRY

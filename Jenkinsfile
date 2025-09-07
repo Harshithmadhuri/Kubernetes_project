@@ -2,14 +2,14 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_HUB = "your-dockerhub-username"
+        DOCKER_HUB = "harshithmadhuri"
         IMAGE = "myapp"
     }
 
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/your-repo/myapp.git'
+                git branch: 'main', url: 'https://github.com/Harshithmadhuri/Kubernetes_project.git'
             }
         }
 
@@ -21,7 +21,7 @@ pipeline {
 
         stage('Push Docker Image') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                withCredentials([usernamePassword(credentialsId: 'agent_dockerhub', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                     sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
                     sh 'docker push $DOCKER_HUB/$IMAGE:latest'
                 }
